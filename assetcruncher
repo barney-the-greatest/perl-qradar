@@ -2,7 +2,6 @@
 #this is to make more readable qradar asset lists. it reads csv's, and requires the , to separate the fields. the top line of the
 #asset export (where each field is listed) must be removed from the file in question. the $fh = "/asset/list"; requires the location of your asset list
 
-$_ = undef;
 $fh = "/asset/list/location";
 open(FH, "< $fh") or die "file: $fh not present: $!";
 while ($line = <FH>){

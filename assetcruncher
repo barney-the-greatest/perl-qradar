@@ -1,0 +1,13 @@
+#!/usr/bin/perl 
+#this is to make more readable qradar asset lists. it reads csv's, and requires the , to separate the fields. the top line of the
+#asset export (where each field is listed) must be removed from the file in question. the $fh = "/asset/list"; requires the location of your asset list
+
+$_ = undef;
+$fh = "/asset/list/location";
+open(FH, "< $fh") or die "file: $fh not present: $!";
+while ($line = <FH>){
+  ($id, $mag, $desc, $ipAd, $nam, $wei, $flSeen, $flSeenActive, $flSeenPassive, $mac, $risk, $ports, $hostID, $approvedForRole, $netpath, $dotname, $netname, $ipcidr, $netid, $lseen, $shname, $shdesc, $hname, $mname, $extended, $uname, $gname, $cname, $lobserved, $fobserved, $vulncount) = split ',', $line;
+  
+  print "QID:$id, IP:$ipAd, name:$nam, MAC:$mac, hostname:$hname, username:$uname\n";
+  
+  

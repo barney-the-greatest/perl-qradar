@@ -1,8 +1,23 @@
 #!/usr/bin/perl 
 #logravager
 
-$fh = "/home/barney/Desktop/test_logs/qradar.error";
-$loc = "/home/barney/Desktop/script_outputs/";
+#structure
+=pod
+if ( $_ = /regex/ ) {
+	my $file location to write to;
+	open ( new fh for writing to);
+	push @holdingarray, $_; (push @where-the-data-needs-to-be, $where-data-currently-is)
+	print {new fh } @holdingarray;
+	close new fh;
+
+elsif 
+	so on.. 
+
+
+=cut
+
+$fh = "/home/barney/Desktop/test_logs/qradar.error";           #change this line to where your qradar.error file is
+$loc = "/home/barney/Desktop/script_outputs/";		       #change this line to where you want your new files to spawn
 
 open (FH, "< $fh") or die "File $fh wont open: $!\n";
 while ($_ = <FH>){
@@ -348,17 +363,4 @@ while ($_ = <FH>){
 }
 
 
-#structure
-=pod
-if ( $_ = /regex/ ) {
-	my $file location to write to;
-	open ( new fh for writing to);
-	push @holdingarray, $_; (push @where-the-data-needs-to-be, $where-data-currently-is)
-	print {new fh } @holdingarray;
-	close new fh;
 
-elsif 
-	so on.. 
-
-=cut
-=cut

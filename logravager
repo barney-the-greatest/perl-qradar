@@ -1,0 +1,364 @@
+#!/usr/bin/perl 
+#logravager
+
+$fh = "/home/barney/Desktop/test_logs/qradar.error";
+$loc = "/home/barney/Desktop/script_outputs/";
+
+open (FH, "< $fh") or die "File $fh wont open: $!\n";
+while ($_ = <FH>){
+	if ($_ =~ /default_Netflow:/){
+		system("touch $loc" . "netflow.error");
+		my $NEFH = "$loc" . "netflow.error";
+		open (NFH, "> $NEFH");
+		push @netflow, $_;
+		print { NFH } @netflow;
+		close NFH;						
+}
+	elsif ($_ =~ /[A|a]pplication ran out of memory/) {
+		system("touch $loc" . "appmemory.error");	
+		my $AMFH = "$loc" . "appmemory.error";
+		open (NFH, "> $AMFH");
+		push @memerr, $_;
+		print { NFH } @memerr;
+		close NFH;
+}		
+	elsif ($_ =~ /[A|a]ccumulator/) {
+	   	system("touch $loc" . "accumulator.error");
+		my $AFH = "$loc" . "accumulator.error";
+		open (NFH, "> $AFH");
+		push @accum, $_;
+		print { NFH } @accum;
+		close NFH;
+}
+	elsif ($_ =~ /[A|a]utomatic updates/) {
+		system("touch $loc" . "autoupdate.error");
+		my $UFH = "$loc" . "autoupdate.error";	
+		open (NFH, "> $UFH");
+		push @updat, $_;
+		print { NFH } @updat;
+		close NFH;
+}		
+	elsif ($_ =~ /[B|b]ackup:/) {
+		system("touch $loc" . "backup.error");
+		my $BFH = "$loc" . "backup.error";
+		open (NFH, "> $BFH");
+		push @backu, $_;
+		print { NFH } @backu;
+		close NFH;
+}
+	elsif ($_ =~ /[P|p]rocess Monitor:/) {
+		system("touch $loc" . "procmon.error");
+		my $PFH = "$loc" . "procmon.error";
+		open (NFH, "> $BFH");
+		push @procmon, $_;
+		print { NFH } @procmon;
+		close NFH; 
+}
+	elsif ($_ =~ /[events|flows]|[Events|Flows].*?dropped/ ) { 
+		system(" touch $loc" . "evflodrop.error");
+		my $EFFH = "$loc" . "evflodrop.error";
+		open (NFH, "> $EFFH");
+		push @evflo, $_;
+		print { NFH } @evflo;
+		close NFH;
+} 
+	elsif ($_ =~ /[C|c]onnections were dropped/) {
+		system("touch $loc" . "condrop.error");
+		my $CDFH = "$loc" . "condrop.error";
+		open (NFH, "> $CDFH");
+		push @condro, $_;
+		print { NFH } @condro;
+		close NFH;
+}
+	elsif ($_ =~ /updates installed with errors/) {
+		system ("touch $loc" . "autoupd.error");
+		my $AUFH = "$loc" . "autoupd.error";
+		open (NFH, "> $AUFH");
+		push @autoup, $_;
+		print { NFH } @autoup;
+		close NFH;
+}
+	elsif ($_ =~ /[HA|ha].*?[F|f]ailure/ ) { 
+		system("touch $loc" . "hafail.error");
+		my $HAFH = "$loc" . "hafail.error";
+		open (NFH, "> $HAFH");
+		push @hafail, $_;
+		print { NFH } @hafail;
+		close NFH;
+} 
+	elsif ($_ =~ /[I|i]nfrastructure/) { 
+		system("touch $loc" . "infrastructure.error");
+		my $IFH = "$loc" . "infrastructure.error";
+		open (NFH, "> $IFH");
+		push @inf, $_;
+		print { NFH } @inf;
+		close NFH;
+}
+	elsif ($_ =~ /[D|d]ata replication/) {
+		system("touch $loc" . "datarep.error");
+		my $DRFH = "$loc" . "datarep.error";
+		open (NFH, "> $DRFH");
+		push @datrep, $_;
+		print { NFH } @datrep;
+		close NFH;
+}
+	elsif ($_ =~ /[H|h]igh availability/){
+		system("touch $loc" . "highavail.error");
+		my $HAVFH = "$loc" . "highavail.error";
+		open (NFH, "> $HAVFH");
+		push @highavail, $_;
+		print { NFH } @highavail;
+		close NFH;
+}
+	elsif ($_ =~ /[S|s]canner/){
+		system("touch $loc" . "scanner.error");
+		my $SCFH = "$loc" . "scanner.error";
+		open (NFH, "> $SCFH");
+		push @scan, $_;
+		print { NFH } @scan;
+		close NFH;			
+}
+	elsif ($_ =~ /[T|t]raffic/){
+		system("touch $loc" . "traffic.error");
+		my $TFH = "$loc" . "traffic.error";
+		open (NFH, "> $TFH");
+		push @traf, $_;
+		print { NFH } @traf;
+		close NFH;
+}
+	elsif ($_ =~ /[D|d]isk [S|s]entry/){
+		system("touch $loc" . "disksentry.error");
+		my $DSFH = "$loc" . "disksentry.error";
+		open (NFH, "> $DSFH");
+		push @disksent, $_;
+		print { NFH } @disksent;
+		close NFH;
+}
+	elsif ($_ =~ /[d|D]isk [S|s]pace/){
+		system("touch $loc" . "diskspace.error");
+		my $DSEFH = "$loc" . "diskspace.error";
+		open (NFH, "> $DSEFH");
+		push @diskspace, $_;
+		print { NFH } @diskspace;
+		close NFH;
+}
+	elsif ($_ =~ /[S|s]can/){
+		system("touch $loc" . "scan.error");
+		my $SCFH = "$loc" . "scan.error";
+		open (NFH, "> $SCFH");
+		push @scann, $_;
+		print { NFH } @scann;
+		close NFH;
+}
+	elsif ($_ =~ /[G|g]ateway/){
+		system("touch $loc" . "gateway.error");
+		my $GWFH = "$loc" . "gateway.error";
+		open (NFH, "> $GWFH");
+		push @gway, $_;
+		print { NFH } @gway;
+		close NFH;
+}
+	elsif ($_ =~ /[D|d]isk [F|f]ailure/) {
+		system("touch $loc" . "diskfail.error");
+		my $DFFH = "$loc" . "diskfail.error";
+		open (NFH, "> $DFFH");
+		push @dfail, $_;
+		print { NFH } @dfail;
+		close NFH;
+}
+	elsif ($_ =~ /automatically detect the associated log source/){
+		system("touch $loc" . "autodetect.error");
+		my $ADFH = "$loc" . "autodetect.error";
+		open (NFH, "> $ADFH");
+		push @autodet, $_;
+		print { NFH } @autodet;
+		close NFH;
+}
+	elsif ($_ =~ /[T|t]ransaction [S|s]entry/){
+		system("touch $loc" . "transent.error");
+		my $TSFH = "$loc" . "transent.error";
+		open (NFH, "> $TSFH");
+		push @transent, $_;
+		print { NFH } @transent;
+		close NFH;
+}
+	elsif ($_ =~ /[MPC|mpc]/){
+		system("touch $loc" . "mpc.error");
+		my $MPCFH = "$loc" . "mpc.error";
+		open (NFH, "> $MPCFH");
+		push @mpc, $_;
+		print { NFH } @mpc;
+		close NFH;	
+}
+	elsif ($_ =~ /[T|t]erminating a report/){
+		system("touch $loc" . "longreport.error");
+		my $LRFH = "$loc" . "longreport.error";
+		open (NFH, "> $LRFH");
+		push @longrep, $_;
+		print { NFH } @longrep;
+		close NFH;
+}
+	elsif ($_ =~ /[p|P]rotocol/){ 
+		system("touch $loc" . "protocol.error");
+		my $PFH = "$loc" . "protocol.error";
+		open (NFH, "> $PFH");
+		push @prot, $_;
+		print { NFH } @prot;
+		close NFH;
+}
+	elsif ($_ =~ /[L|l]og [S|s]ource/){
+		system("touch $loc" . "logsource.error");
+		my $LSFH = "$loc" . "logsource.error";
+		open (NFH, "> $LSFH");
+		push @logsource, $_;
+		print { NFH } @logsource;
+		close NFH;
+}
+	elsif ($_ =~ /[SAR|sar]/){
+		system("touch $loc" . "sar.error");
+		my $SARFH = "$loc" . "sar.error";
+		open (NFH, "> $SARFH");
+		push @sar, $_;
+		print { NFH } @sar;
+		close NFH;
+}
+	elsif ($_ =~ /[user|User]/){
+		system("touch $loc" . "user.error");
+		my $USFH = "$loc" . "user.error";
+		open (NFH, "> $USFH");
+		push @usrerr, $_;
+		print { NFH } @usrerr;
+		close NFH;
+}
+	elsif ($_ =~ /[P|p]erformance/){
+		system("touch $loc" . "performance.error");
+		my $PFH = "$loc" . "performance.error";
+		open (NFH, "> $PFH");
+		push @perfm, $_;
+		print { NFH } @perfm;
+		close NFH;		
+}
+	elsif ($_ =~ /[C|c]ustom [P|p]roperty/){
+		system("touch $loc" . "custprop.error");
+		my $CPFH = "$loc" . "custprop.error";
+		open (NFH, "> $CPFH");
+		push @custprop, $_;
+		print { NFH } @custprop;
+		close NFH;
+}		
+	elsif ($_ =~ /[B|b]ackup/){
+		system("touch $loc" . "backup.error");
+		my $BKFH = "$loc" . "backup.error";
+		open (NFH, "> $BKFH");
+		push @bkup, $_;
+		print { NFH } @bkup;
+		close NFH;
+}
+	elsif ($_ =~ /[T|t]hreshold/){
+		system("touch $loc" . "threshold.error");
+		my $THFH = "$loc" . "threshold.error";
+		open (NFH, "> $THFH");
+		push @threshold, $_;
+		print { NFH } @threshold;
+		close NFH;
+}
+	elsif ($_ =~ /[DRBD|drbd]/){
+		system("touch $loc" . "drbd.error");
+		my $DRBDFH = "$loc" . "drbd.error";
+		open (NFH, "> $DRDBFH");
+		push @drbd, $_;
+		print { NFH } @drbd;
+		close NFH;
+}
+
+	elsif ($_ =~ /[CRE|cre]/){
+		system("touch $loc" . "cre.error");
+		my $CREFH = "$loc" . "cre.error";
+		open (NFH, "> $CREFH");
+		push @cre, $_;
+		print { NFH } @cre;
+		close NFH;
+		
+}
+	elsif ($_ =~ /[A|a]nomaly [D|d]etection [E|e]ngine/){
+		system("touch $loc" . "ade.error");
+		my $ADEFH = "$loc" . "ade.error";
+		open (NFH, "> $ADEFH");
+		push @ade, $_;
+		print { NFH } @ade;
+		close NFH;
+}
+	elsif ($_ =~ /[P|p]rocess/){
+		system("touch $loc" . "process.error");
+		my $PROCFH = "$loc" . "process.error";
+		open (NFH, "> $PROCFH");
+		push @proc, $_;
+		print { NFH } @proc;
+		close NFH;
+}
+	elsif ($_ =~ /[A|a]sset/){
+		system("touch $loc" . "asset.error");
+		my $ASSFH = "$loc" . "asset.error";
+		open (NFH, "> $ASSFH");
+		push @ass, $_;
+		print { NFH } @ass;
+		close NFH;
+}
+	elsif ($_ =~ /[S|s]tore/){
+		system("touch $loc" . "store.error");
+		my $STRFH = "$loc" . "store.error";
+		open (NFH, "> $STRFH");
+		push @stre, $_;
+		print { NFH } @stre;
+		close NFH;
+}
+	elsif ($_ =~ /[C|c]orrupt/){
+		system("touch $loc" . "corrupt.error");
+		my $CRFH = "$loc" . "corrupt.error";
+		open (NFH, "> $CRFH");
+		push @crpt, $_;
+		print { NFH } @crpt;
+		close NFH;
+}
+	elsif ($_ =~ /[P|p]artition/){
+		system("touch $loc" . "partition.error");
+		my $PTFH = "$loc" . "partition.error";
+		open (NFH, "> $PTFH");
+		push @partit, $_;
+		print { NFH } @partit;
+		close NFH;
+}
+	elsif ($_ =~ /[L|l]icense/){
+		system("touch $loc" . "license.error");
+		my $LCFH = "$loc" . "license.error";
+		open (NFH, "> $LCFH");
+		push @lice, $_;
+		print { NFH } @lice;
+		close NFH;
+}
+	elsif ($_ =~ /[M|m]emory/){
+		system("touch $loc" . "memory.error");
+		my $MEMFH = "$loc" . "memory.error";
+		open (NFH, "> $MEMFH");
+		push @memr, $_;
+		print { NFH } @memr;
+		close NFH;
+}
+
+}
+
+
+#structure
+=pod
+if ( $_ = /regex/ ) {
+	my $file location to write to;
+	open ( new fh for writing to);
+	push @holdingarray, $_; (push @where-the-data-needs-to-be, $where-data-currently-is)
+	print {new fh } @holdingarray;
+	close new fh;
+
+elsif 
+	so on.. 
+
+=cut
+=cut
